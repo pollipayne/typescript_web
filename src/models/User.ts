@@ -1,4 +1,7 @@
 
+//type alias for empty function 
+type Callback = () => void;
+
 interface UserProps {
   name?: string,
   age?: number
@@ -6,6 +9,7 @@ interface UserProps {
 
 
 export class User {
+  events: { [key: string]: Callback[] } = {}
 
   constructor(private data: UserProps) { }
 
@@ -14,6 +18,15 @@ export class User {
   }
   set(update: UserProps): void {
     Object.assign(this.data, update);
+  }
+  on(eventName: string, callback: Callback): void {
+    const handlers = this.events[eventName] || [];
+    handlers.push(callback)
+    this.events[eventName] = handlers
+  }
+
+  trigger() {
+
   }
 
 }
