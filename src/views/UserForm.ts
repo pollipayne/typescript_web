@@ -18,7 +18,15 @@ export class UserForm {
   eventsMap(): { [key: string]: () => void } {
     return {
       'click:.set-age': this.onSetAgeClick,
+      'click:.update-name': this.onUpdateNameClick,
     }
+  }
+
+  onUpdateNameClick = (): void => {
+    const input = this.parent.querySelector('input')
+    const name = input.value
+    this.model.set({ name })
+
   }
 
   onSetAgeClick = (): void => {
@@ -32,6 +40,7 @@ export class UserForm {
       <div>${this.model.get('name')} </div>
       <div>${this.model.get('age')} </div>
       <input /> 
+      <button class="update-name">Update Name</button>
       <button class="set-age">  Set Random Age  </button>
     </div>
     `;
