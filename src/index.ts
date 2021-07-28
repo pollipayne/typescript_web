@@ -1,10 +1,11 @@
-import { userInfo } from 'os';
+import { UserForm } from './views/UserForm';
 import { User } from './models/User';
 
 
+const user = User.buildUser({ name: "TAMPOPO", age: 20 })
 
 
-const user = User.buildUser({ id: 6 })
+const userForm = new UserForm(document.getElementById('root'), user);
 
-user.fetch();
-console.log(user)
+
+userForm.render();
